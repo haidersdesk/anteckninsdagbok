@@ -239,7 +239,7 @@ function addForm() {
 //********Fukntion för att ta bort inlägget********//
 
 // TO DO:
-//function removeBook(element) { //Tar bort inlägget
+//function removeLogg(element) { //Tar bort inlägget
 
 // anteckningslogg.splice(element.target.dataset.ID, 1); //Tar bort från arrayen
 //  updateLoggBoken(); //uppdaterar view
