@@ -89,7 +89,7 @@ main h1 h2 {
   grid-area: main6;
   justify-self: stretch;
 }
-#dag7 {
+#dag0 {
   grid-area: main7;
   justify-self: stretch;
 }
@@ -99,9 +99,12 @@ main h1 h2 {
   justify-self: stretch;
 }
 
+
+/*popup form när man klickar på nytt inlägg button*/
+
 #newloggform {
     width: 200px;
-    padding: 30px;
+    padding: 15px;
     background-color:rgb(5, 83, 83);
     border-radius: 10px;
     border: 1px solid white;
@@ -117,6 +120,8 @@ main h1 h2 {
   }
 
   
+ /*byt inlägg button*/
+
   #newlogg {
     margin: 5px;
     padding: 15px;
@@ -128,5 +133,46 @@ main h1 h2 {
     outline: none;
   }
 
-  
+  #done {
+    position:absolute;
+    background-color:rgb(4, 119, 119);
+    border-radius: 30%;
+    border: 1px solid #e6e6e6;
+    color: #e6e6e6;
+    right: 5px;
+    bottom: 5px;
+    padding: 5px;
+    
+  }
  
+  .removeform {
+    background: url("images/remove.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    background-position: center center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    position:absolute;
+    top: 7px;
+    left: 6px;
+  }
+
+  .remove:hover, .removeform:hover, .removelogin:hover {
+    opacity: 0.3;
+  }
+
+
+  
+
+  .loggs {
+    width: 250px;
+    padding: 5px;
+    margin: 30px;
+    background-color:rgb(55, 129, 129);
+    border-radius: 10px;
+    position:relative;
+    border: 1px solid#fffafaa3;
+    text-align: center;
+  }
