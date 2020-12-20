@@ -128,5 +128,26 @@ main h1 h2 {
     outline: none;
   }
 
-  
- 
+  /* Själva antecknings rutan med title och content*/
+  .note {
+    border: 2px solid rgb(0, 255, 0);
+    box-shadow: 1px 1px 10px rgba(0, 255, 0, 0.2);
+    padding: 10px;
+    color: black;
+    
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 200px;
+  }
+
+  .note img {
+    max-width: 100%;
+  }
+
+  .note.red {
+
+    border: 2px solid rgb(255, 0, 0);
+    box-shadow: 1px 1px 10px rgba(255, 0, 0, 0.2);
+
+  }
