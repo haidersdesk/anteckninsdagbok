@@ -151,3 +151,65 @@ main h1 h2 {
     box-shadow: 1px 1px 10px rgba(255, 0, 0, 0.2);
 
   }
+  #welcomeText{
+    color: white;
+    position:fixed;
+    top:5%;
+    width: 100%;
+    background-size: cover;
+    background: rgb(0, 128, 128); /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      teal,
+      teal,
+      rgb(1, 26, 26)
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      teal,
+      teal,
+      rgb(1, 26, 26)
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  #welcomeinv{
+    color:white;
+    position:fixed;
+    top:8%;
+    width: 100%;
+    background-size: cover;
+    background: rgb(0, 128, 128); /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      teal,
+      teal,
+      rgb(1, 26, 26)
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      teal,
+      teal,
+      rgb(1, 26, 26)
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  #clock {
+    color: white;
+    position:fixed;
+    top:0;
+    font-size: 20px;
+    width: 100%;
+    background-size: cover;
+    background: rgb(0, 128, 128); /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      teal,
+      teal,
+      rgb(1, 26, 26)
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      teal,
+      teal,
+      rgb(1, 26, 26)
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+  
