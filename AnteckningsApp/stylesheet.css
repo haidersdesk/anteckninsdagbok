@@ -36,7 +36,6 @@ body {
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   position: absolute;
-
   display: grid;
   grid-template-columns: 200px 200px 200px 200px 200px 200px 200px;
   grid-template-rows: auto;
@@ -68,30 +67,37 @@ main h1 h2 {
 #dag1 {
   grid-area: main1;
   justify-self: stretch;
+  position: fixed;
 }
 #dag2 {
   grid-area: main2;
   justify-self: stretch;
+  position: fixed;
 }
 #dag3 {
   grid-area: main3;
   justify-self: stretch;
+  position: fixed;
 }
 #dag4 {
   grid-area: main4;
   justify-self: stretch;
+  position: fixed;
 }
 #dag5 {
   grid-area: main5;
   justify-self: stretch;
+  position: fixed;
 }
 #dag6 {
   grid-area: main6;
   justify-self: stretch;
+  position: fixed;
 }
-#dag7 {
+#dag0 {
   grid-area: main7;
   justify-self: stretch;
+  position: fixed;
 }
 
 #buttonandform {
