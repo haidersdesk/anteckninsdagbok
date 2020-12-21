@@ -10,6 +10,7 @@ function Logg(titel, content, bild, imp) {
   this.imp = imp;
   
 }
+//Test branch code bablabalb
 
 // forminit kaller funktion addform vilket visar ny form
 
