@@ -2,30 +2,22 @@ let anteckningslogg = []; // array för att innehålla anteckningar
 
 // Objekt logg: för att skapa nya inlägg
 
-function Logg(titel, content, bild, imp) {
+function Logg(titel, content, viktigt) {
   //konstruktör
   this.titel = titel;
   this.content = content;
-  this.bild = bild;
-  this.imp = imp;
-  
+  this.viktigt = viktigt;
 }
 
-// forminit kaller funktion addform vilket visar ny form
+// AddForm för att framkalla form när man klickar på nyttinlägg knappen
 
-document
-  .getElementById("newlogg")
-  .addEventListener("click", function forminit() {
-    addForm();
-  });
+document.getElementById("newlogg").addEventListener("click", addForm);
 
 function addForm() {
   // Skapa en ny form
   let form = document.createElement("form");
   form.id = "newloggform";
-  form.addEventListener("submit", addNote);
-
-  //form.setAttribute("action", addToAnteckningslogg); ( inte gjort än)
+  //form.setAttribute("action", addToAnteckningslogg);
 
   // Titel
   let titeldiv = document.createElement("div");
@@ -62,51 +54,28 @@ function addForm() {
   // Append contentdiv till form
   form.appendChild(contentdiv);
 
-  //Bild-url länk
-  let bilddiv = document.createElement("div");
-  let bildlabel = document.createElement("label");
-  let bildinput = document.createElement("input");
-  bilddiv.appendChild(bildlabel);
-  bilddiv.appendChild(bildinput);
-  bildlabel.textContent = "Bild om Önskas";
-
-  bildlabel.setAttribute("for", "bild");
-  bildinput.id = "bild";
-  bildinput.setAttribute("type", "bild");
-  bildinput.setAttribute("name", "bild");
-  bildinput.setAttribute("placeholder", "https://example.com");
-  bildinput.required = false;
-
-  // Append contentdiv till form
-  form.appendChild(bilddiv);
-
-
   // Veckodag Paragraph
   let veckodagen = document.createElement("P");
   veckodagen.id = "veckodag";
-  
-  veckodagen.textContent = " Idag är " +  getveckodag();
-  function getveckodag() {
-  var d = new Date();
-  var dag = new Array(7);
-  dag[0] = "Söndag";
-  dag[1] = "Måndag";
-  dag[2] = "Tisdag";
-  dag[3] = "Onsdag";
-  dag[4] = "Torsdag";
-  dag[5] = "Fredag";
-  dag[6] = "Lördag";
 
-  var n = dag[d.getDay()];
-  return n;
+  veckodagen.textContent = " Idag är " + getveckodag();
+  function getveckodag() {
+    var d = new Date();
+    var dag = new Array(7);
+    dag[0] = "Söndag";
+    dag[1] = "Måndag";
+    dag[2] = "Tisdag";
+    dag[3] = "Onsdag";
+    dag[4] = "Torsdag";
+    dag[5] = "Fredag";
+    dag[6] = "Lördag";
+
+    var n = dag[d.getDay()];
+    return n;
   }
-  
-    
+
   // Append veckodagen till form
   form.appendChild(veckodagen);
-  
-
-
 
   //Yes or No
   let impdiv = document.createElement("div");
@@ -130,7 +99,7 @@ function addForm() {
   impdiv.appendChild(implabel);
   impdiv.appendChild(yesdiv);
   impdiv.appendChild(nodiv);
-  implabel.textContent = "Viktigt?";
+  implabel.textContent = "Ikke Viktigt?";
   yeslabel.textContent = "Yes";
   yeslabel.setAttribute("for", "yes");
   yesinput.setAttribute("type", "radio");
@@ -148,6 +117,7 @@ function addForm() {
   let donebutton = document.createElement("button");
   donebutton.id = "done";
   donebutton.textContent = "Done";
+  donebutton.addEventListener("click", addToAnteckningslogg);
 
   // Append donebutton till form
   form.appendChild(donebutton);
@@ -170,9 +140,6 @@ function addForm() {
   });
   contentdiv.addEventListener("click", () => {
     contentinput.focus();
-  });
-  bilddiv.addEventListener("click", () => {
-    bildinput.focus();
   });
 
   //Append till "buttonandform" div
@@ -227,67 +194,90 @@ function addForm() {
 }
 
 //********Fukntion för att lägga nya inlägg till arrayen anteckningslogg********//
-// TO DO:
-//function addToAnteckningslogg() 
-function addNote(e){
-  
-  var titel = e.target.elements.titel.value;
-  var content = e.target.elements.content.value;
-  var bildUrl = e.target.elements.bild.value;
-  var viktigt = e.target.elements.yes.checked;
-  e.preventDefault();
 
-  console.log(titel, content, e.target.elements);
-  var dagId = "dag" + new Date().getDay()
-  var dag = document.getElementById(dagId);
-  
-  let titleElement = document.createElement("h3");
-  titleElement.textContent = titel;
+function addToAnteckningslogg() {
+  let titel = document.getElementById("newloggform").elements[0].value;
+  let content = document.getElementById("newloggform").elements[1].value;
 
-  let contentElement = document.createElement("p");
-  contentElement.textContent = content; 
+  let viktigt;
 
-  let bildElement = document.createElement("img");
-  bildElement.src = bildUrl;
-
-  let div = document.createElement("div");
-  
-  if(viktigt){
-    div.className = "note red";
+  if (document.getElementById("newloggform").elements[3].checked) {
+    viktigt = true;
+  } else if (document.getElementById("newloggform").elements[4].checked) {
+    viktigt = false;
   }
-  else{
-    div.className = "note";
-  }
-  div.appendChild(titleElement);
-  div.appendChild(contentElement);
-  div.appendChild(bildElement);
-  dag.appendChild(div);
-
-};
-
+  const logg = new Logg(titel, content, viktigt); //skapas ny objekt
+  anteckningslogg.push(logg); //läggs till anteckningslogg arrayen
+  document.getElementById("newloggform").remove();
+  updateLoggBoken();
+  pushLocalStorage();
+}
 
 //********Fukntion för att visa anteckning och uppdatera view********//
 
- //TO DO:
-//function updateLoggBoken() 
-function notesInfo(){
-  anteckningslogg.forEach(function(e){
-      e.getbookInfo();
+function updateLoggBoken() {
+  var dagId = "dag" + new Date().getDay();
+  var dag = document.getElementById(dagId);
+
+  dag.textContent = " ";
+  anteckningslogg.forEach((element) => {
+    // Skapar ny elements
+    let div = document.createElement("div");
+    let titel = document.createElement("h2");
+    let content = document.createElement("p");
+    let viktigt = document.createElement("p");
+    let remove = document.createElement("button");
+
+    // tilldelar värden till alla elements
+    titel.textContent = element.titel;
+    content.textContent = element.content;
+    viktigt.textContent = element.viktigt ? "viktig" : "Ikke Viktig";
+    if (element.viktigt) {
+      div.className = "note red";
+    } else {
+      div.className = "note";
+    }
+
+    remove.dataset.ID = anteckningslogg.indexOf(element);
+    remove.addEventListener("click", removeLogg);
+
+    //Lägger elemts till
+
+    div.appendChild(titel);
+    div.appendChild(content);
+    div.appendChild(viktigt);
+    div.appendChild(remove);
+
+    remove.classList.add("remove");
+
+    //append allt till dag
+    dag.appendChild(div);
+    pushLocalStorage();
   });
-};
+}
 
 //********Fukntion för att ta bort inlägget********//
-function removeNote(){
-  var noteIndex = prompt("Which note do you want to remove?", "Enter the numeric index number of the note you wish to remove");
-  var x = parseInt(noteIndex);
-  anteckningslogg.splice(x, 1); 
-  alert ("hey" + x + "!");
-};
 
-// TO DO:
-//function removeLogg(element) { //Tar bort inlägget
+function removeLogg(element) {
+  anteckningslogg.splice(element.target.dataset.ID, 2);
+  updateLoggBoken();
+  pushLocalStorage();
+}
 
-// anteckningslogg.splice(element.target.dataset.ID, 1); //Tar bort från arrayen
-//  updateLoggBoken(); //uppdaterar view
-//}; 
+//********Fukntion för att att pusha och ta emot från LocalStorage********//
 
+function pushLocalStorage() {
+  localStorage.setItem("anteckningslogg", JSON.stringify(anteckningslogg));
+}
+
+function pullLocalStorage() {
+  if (!localStorage.anteckningslogg) {
+    updateLoggBoken()
+  } else {
+    let anteckningsloggLocal = localStorage.getItem("anteckningslogg");
+    anteckningsloggLocal = JSON.parse(anteckningsloggLocal);
+    anteckningslogg = anteckningsloggLocal;
+    updateLoggBoken()
+  }
+}
+pullLocalStorage();

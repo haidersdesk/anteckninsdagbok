@@ -25,13 +25,14 @@
 
 body {
   font-family: "Cherry Cream Soda", Arial, Helvetica, sans-serif;
-  color:white;
+  color: white;
   overflow-wrap: break-word;
 }
 
 #main {
   text-align: center;
-  width: 80vw;
+  max-width: 1400px;
+  max-height: 800px;
   top: 30%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
@@ -46,10 +47,9 @@ body {
   border-radius: 10px;
   grid-template-areas:
     "header header header header header header header"
-    "main1 main2 main3 main4 main5 main6 main7"
+    "main1 main2 main3 main4 main5 main6 main0"
     "footer footer footer footer footer footer footer";
 }
-
 
 main h1 h2 {
   text-align: center;
@@ -63,11 +63,10 @@ main h1 h2 {
   margin: auto;
   justify-self: center;
 }
-
 #dag1 {
   grid-area: main1;
   justify-self: stretch;
-  position: fixed;
+  position: absolute;
 }
 #dag2 {
   grid-area: main2;
@@ -95,127 +94,187 @@ main h1 h2 {
   position: fixed;
 }
 #dag0 {
-  grid-area: main7;
+  grid-area: main0;
   justify-self: stretch;
   position: fixed;
 }
 
 #buttonandform {
-  grid-area: footer;
+grid-area: footer;
   justify-self: stretch;
 }
+/*popup form när man klickar på nytt inlägg button*/
 
 #newloggform {
-    width: 200px;
-    padding: 30px;
-    background-color:rgb(5, 83, 83);
-    border-radius: 10px;
-    border: 1px solid white;
-    text-align: center;
-    position:absolute;
-    top: 300%;
-    left: 40%;
-  }
+  width: 200px;
+  padding: 30px;
+  background-color: rgb(5, 83, 83);
+  border-radius: 10px;
+  border: 1px solid white;
+  text-align: center;
+  position: absolute;
+  top: 100%;
+  left: 40%;
+}
 
-  #newloggform label {
-    color: #e6e6e6;
-    padding: 8px;
-  }
+#newloggform label {
+  color: #e6e6e6;
+  padding: 8px;
+}
 
+/*nytt inlägg button*/
+
+#newlogg {
+  margin: 5px;
+  padding: 15px;
+  background-color: rgb(7, 190, 190);
+  border-radius: 25px;
+  border: 1px solid #e6e6e6;
+  color: #e6e6e6;
+  font-size: 1em;
+  outline: none;
+}
+
+/* done button i newloggform*/
+#done {
+  position: absolute;
+  background-color: rgb(4, 119, 119);
+  border-radius: 30%;
+  border: 1px solid #e6e6e6;
+  color: #e6e6e6;
+  right: 5px;
+  bottom: 5px;
+  padding: 5px;
+}
+
+/* removeform button*/
+
+.removeform {
+  background: url("remove.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-position: center center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  position: absolute;
+  top: 7px;
+  left: 6px;
+}
+
+
+
+
+.remove {
+  background: url("remove.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-position: center center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  position: absolute;
+  top: 3px;
+  left: 2px;
+}
+
+.remove:hover,
+.watch:hover,
+.removeform:hover,
+.removelogin:hover {
+  opacity: 0.3;
+}
+
+
+/* Själva antecknings rutan med title och content*/
+.note {
+  border: 2px solid white;
+  box-shadow: 1px 1px 10px   rgb(68, 190, 190);
+  padding: 10px;
+  color: white;
+  position: relative;
   
-  #newlogg {
-    margin: 5px;
-    padding: 15px;
-    background-color:rgb(7, 190, 190);
-    border-radius: 25px;
-    border: 1px solid #e6e6e6;
-    color: #e6e6e6;
-    font-size: 1em;
-    outline: none;
-  }
+  background-color:rgb(70, 175, 175);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  max-width: 125px;
+}
 
-  /* Själva antecknings rutan med title och content*/
-  .note {
-    border: 2px solid rgb(0, 255, 0);
-    box-shadow: 1px 1px 10px rgba(0, 255, 0, 0.2);
-    padding: 10px;
-    color: black;
-    
-    background-color: white;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    max-width: 200px;
-  }
+.note img {
+  max-width: 100%;
+}
 
-  .note img {
-    max-width: 100%;
-  }
+.note.red {
 
-  .note.red {
+  border: 2px solid white;
+  box-shadow: 1px 1px 10px rgb(68, 190, 190);
+  background-color:rgb(247, 105, 105);
 
-    border: 2px solid rgb(255, 0, 0);
-    box-shadow: 1px 1px 10px rgba(255, 0, 0, 0.2);
+}
 
-  }
-  #welcomeText{
-    color: white;
-    position:fixed;
-    top:5%;
-    width: 100%;
-    background-size: cover;
-    background: rgb(0, 128, 128); /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      teal,
-      teal,
-      rgb(1, 26, 26)
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      teal,
-      teal,
-      rgb(1, 26, 26)
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
-  #welcomeinv{
-    color:white;
-    position:fixed;
-    top:8%;
-    width: 100%;
-    background-size: cover;
-    background: rgb(0, 128, 128); /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      teal,
-      teal,
-      rgb(1, 26, 26)
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      teal,
-      teal,
-      rgb(1, 26, 26)
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
-  #clock {
-    color: white;
-    position:fixed;
-    top:0;
-    font-size: 20px;
-    width: 100%;
-    background-size: cover;
-    background: rgb(0, 128, 128); /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      teal,
-      teal,
-      rgb(1, 26, 26)
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      teal,
-      teal,
-      rgb(1, 26, 26)
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  }
-  
+#welcomeText{
+  color: white;
+  position:fixed;
+  top:5%;
+  left: 1%;
+  width: 100%;
+  background-size: cover;
+  background: rgb(0, 128, 128); /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    teal,
+    teal,
+    rgb(1, 26, 26)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    teal,
+    teal,
+    rgb(1, 26, 26)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#welcomeinv{
+  color:white;
+  position:fixed;
+  top:8%;
+  left: 1%;
+  width: 100%;
+  background-size: cover;
+  background: rgb(0, 128, 128); /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    teal,
+    teal,
+    rgb(1, 26, 26)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    teal,
+    teal,
+    rgb(1, 26, 26)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#clock {
+  color: white;
+  position:fixed;
+  top:0;
+  left: 1%;
+  font-size: 20px;
+  width: 100%;
+  background-size: cover;
+  background: rgb(0, 128, 128); /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    teal,
+    teal,
+    rgb(1, 26, 26)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    teal,
+    teal,
+    rgb(1, 26, 26)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
