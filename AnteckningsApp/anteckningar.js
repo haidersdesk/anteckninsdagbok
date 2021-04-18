@@ -8,6 +8,7 @@ function Logg(titel, content, viktigt) {
   this.content = content;
   this.viktigt = viktigt;
 }
+//Test branch code bablabalb
 
 // AddForm för att framkalla form när man klickar på nyttinlägg knappen
 
